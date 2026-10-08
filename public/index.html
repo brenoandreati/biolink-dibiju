@@ -4,162 +4,512 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Di Biju · Semijoias, Acessórios e Makes</title>
-  <meta name="description" content="Semijoias, acessórios e makes em Cobilândia, Vila Velha. Chama a gente no WhatsApp!">
+  <meta name="description" content="Semijoias, acessórios e makes em Cobilândia, Vila Velha. Peça pelo WhatsApp, compre na Shopee ou venha na loja.">
   <meta name="theme-color" content="#254A29">
   <meta property="og:title" content="Di Biju · Semijoias, Acessórios e Makes">
-  <meta property="og:description" content="Semijoias, acessórios e makes em Cobilândia, Vila Velha. Chama a gente no WhatsApp!">
+  <meta property="og:description" content="Semijoias, acessórios e makes em Cobilândia, Vila Velha. Peça pelo WhatsApp, compre na Shopee ou venha na loja.">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23254A29'/%3E%3Cpath d='M32 10c1 11 10 20 21 22-11 2-20 11-21 22-1-11-10-20-21-22 11-2 20-11 21-22z' fill='%23EFA800'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       /* Cores tiradas do logo */
       --green: #254A29;
+      --velvet: #2E5833;
+      --velvet-deep: #193A1D;
       --pink: #FF9EBF;
+      --pink-soft: #FFD6E4;
       --magenta: #A42B61;
       --gold: #EFA800;
+      --gold-line: rgba(239, 168, 0, .55);
+
+      --display: "Bodoni Moda", "Didot", Georgia, serif;
+      --body: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --ease: cubic-bezier(.2, .8, .2, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { -webkit-text-size-adjust: 100%; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    a { color: inherit; }
 
     body {
-      min-height: 100vh;
       min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px calc(32px + env(safe-area-inset-bottom));
       background: var(--green);
-      color: var(--pink);
-      font-family: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
-      text-align: center;
+      color: var(--pink-soft);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.45;
+      -webkit-tap-highlight-color: transparent;
     }
 
     main {
       width: 100%;
-      max-width: 360px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 40px 20px calc(24px + env(safe-area-inset-bottom));
     }
 
-    /* Logo (fundo da imagem = mesma cor da página) */
-    .logo img {
-      display: block;
-      width: min(340px, 88vw);
-      height: auto;
-    }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 8px; }
 
+    /* ---------- Topo ---------- */
+    .hero { text-align: center; }
+    .hero h1 img { width: min(320px, 86vw); height: auto; margin: 0 auto; }
     .tagline {
-      margin-top: 4px;
+      margin-top: 2px;
+      color: var(--pink);
       font-size: clamp(11px, 3.4vw, 12px);
-      font-weight: 400;
       letter-spacing: clamp(1.6px, .75vw, 3.4px);
       text-transform: uppercase;
+    }
+    .place {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      padding: 6px 14px 6px 10px;
+      border: 1px solid var(--gold-line);
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    .place svg { width: 15px; height: 15px; color: var(--gold); }
+
+    /* ---------- Links ---------- */
+    .lead {
+      margin: 40px 0 16px;
+      text-align: center;
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--pink);
       text-wrap: balance;
     }
+    .links { display: grid; gap: 14px; list-style: none; }
+    .link {
+      display: grid;
+      grid-template-columns: 44px 1fr 18px;
+      align-items: center;
+      gap: 14px;
+      min-height: 72px;
+      padding: 12px 18px 12px 14px;
+      border-radius: 22px;
+      background: var(--velvet);
+      color: var(--pink);
+      text-decoration: none;
+      box-shadow: 0 4px 0 var(--velvet-deep);
+      transition: transform 140ms var(--ease), box-shadow 140ms var(--ease);
+    }
+    .link:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--velvet-deep); }
+    .link-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--gold);
+    }
+    .link-icon svg { width: 22px; height: 22px; }
+    .link-text { display: grid; gap: 1px; }
+    .link-title { font-size: 16px; font-weight: 500; }
+    .link-sub { font-size: 13px; color: var(--pink-soft); }
+    .link-arrow { width: 18px; height: 18px; opacity: .8; }
 
-    .spark {
-      width: 18px;
-      height: 18px;
-      margin: 40px 0 32px;
-      fill: var(--gold);
+    .link--whats { background: var(--pink); color: var(--green); box-shadow: 0 5px 0 var(--magenta); }
+    .link--whats:active { box-shadow: 0 2px 0 var(--magenta); }
+    .link--whats .link-icon { background: var(--green); color: var(--pink); }
+    .link--whats .link-sub { color: var(--green); }
+
+    @media (hover: hover) {
+      .link:hover { transform: translateY(-1px); }
+      .link:active { transform: translateY(3px); }
     }
 
-    /* Botão */
-    .btn {
+    /* ---------- Seções ---------- */
+    .sep {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 56px 0 28px;
+      color: var(--gold);
+    }
+    .sep::before, .sep::after { content: ""; width: 48px; height: 1px; background: var(--gold-line); }
+    .sep svg { width: 14px; height: 14px; }
+
+    .section-head { text-align: center; margin-bottom: 20px; }
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+    .title {
+      margin-top: 6px;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 34px;
+      line-height: 1.1;
+      color: var(--pink);
+      text-wrap: balance;
+    }
+    .hint { margin-top: 8px; font-size: 14px; }
+
+    /* ---------- Vitrine ---------- */
+    .chips {
+      display: flex;
+      gap: 8px;
+      margin: 0 -20px 24px;
+      padding: 2px 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      justify-content: safe center;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: none;
+      min-height: 36px;
+      padding: 0 16px;
+      border: 1px solid rgba(255, 158, 191, .45);
+      border-radius: 999px;
+      color: var(--pink);
+      font-size: 14px;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+    .chip[aria-pressed="true"] { background: var(--pink); border-color: var(--pink); color: var(--green); }
+
+    .vitrine {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 16px;
+      list-style: none;
+    }
+    .peca[hidden] { display: none; }
+    .peca.is-in { animation: pop 320ms var(--ease) both; }
+    .peca-btn { display: block; width: 100%; text-align: center; border-radius: 0; }
+    .peca-btn:focus-visible { outline: none; }
+    .peca-btn:focus-visible .arch { outline-color: var(--gold); outline-width: 2px; }
+
+    /* A assinatura: moldura em arco com fio dourado, como o anel duplo do logo */
+    .arch {
+      display: block;
+      aspect-ratio: 3 / 4;
+      border-radius: 999px 999px 14px 14px;
+      overflow: hidden;
+      outline: 1px solid var(--gold-line);
+      outline-offset: 5px;
+      margin: 6px;
+      background: var(--velvet);
+      transition: transform 200ms var(--ease);
+    }
+    .arch img { width: 100%; height: 100%; object-fit: cover; }
+    .peca-btn:active .arch { transform: scale(.97); }
+    .peca-nome { display: block; margin-top: 12px; color: var(--pink); font-size: 15px; font-weight: 500; line-height: 1.25; }
+    .peca-cat { display: block; margin-top: 2px; font-size: 12px; letter-spacing: .08em; }
+
+    /* Espaço reservado enquanto a foto não chega */
+    .ph {
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(90% 60% at 50% 30%, #3B6B40 0%, var(--velvet) 70%);
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .ph svg { width: 22px; height: 22px; }
+    .ph span { color: var(--pink-soft); opacity: .75; }
+
+    /* ---------- A loja ---------- */
+    .loja {
+      display: flex;
+      gap: 12px;
+      margin: 0 -20px;
+      padding: 0 20px 4px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 20px;
+      scrollbar-width: none;
+      list-style: none;
+    }
+    .loja::-webkit-scrollbar { display: none; }
+    .loja > li { flex: none; width: 74%; scroll-snap-align: start; }
+    .foto {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--velvet);
+    }
+    .foto img { width: 100%; height: 100%; object-fit: cover; }
+    .foto figcaption {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(37, 74, 41, .85);
+      color: var(--pink);
+      font-size: 13px;
+    }
+    .loja-info { margin-top: 22px; text-align: center; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 46px;
+      margin-top: 14px;
+      padding: 0 22px;
+      border: 1px solid var(--pink);
+      border-radius: 999px;
+      color: var(--pink);
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+    .btn-outline svg { width: 18px; height: 18px; }
+    .btn-outline:active { background: var(--pink); color: var(--green); }
+
+    /* ---------- Rodapé ---------- */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 158, 191, .18);
+      text-align: center;
+      font-size: 13px;
+    }
+    footer a { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; color: var(--pink); text-decoration: none; font-size: 14px; }
+    footer a svg { width: 16px; height: 16px; }
+
+    /* ---------- Peça aberta ---------- */
+    .sheet {
+      width: 100%;
+      max-width: 440px;
+      max-height: 92dvh;
+      margin: auto auto 0;
+      padding: 28px 24px calc(24px + env(safe-area-inset-bottom));
+      border: 0;
+      border-radius: 28px 28px 0 0;
+      background: var(--green);
+      color: var(--pink-soft);
+      text-align: center;
+      box-shadow: 0 -1px 0 var(--gold-line);
+    }
+    .sheet[open] { animation: up 320ms var(--ease) both; }
+    .sheet::backdrop { background: rgba(10, 24, 12, .65); backdrop-filter: blur(3px); }
+    .sheet .arch { width: min(64%, 240px); margin: 6px auto 0; }
+    .sheet .eyebrow { margin-top: 24px; }
+    .sheet .title { font-size: 30px; }
+    .sheet-whats {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      width: 100%;
-      min-height: 58px;
-      padding: 0 24px;
+      min-height: 56px;
+      margin-top: 22px;
       border-radius: 999px;
       background: var(--pink);
       color: var(--green);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 500;
-      letter-spacing: .01em;
       text-decoration: none;
       box-shadow: 0 5px 0 var(--magenta);
-      transition: transform 140ms cubic-bezier(.2, .8, .2, 1), box-shadow 140ms cubic-bezier(.2, .8, .2, 1);
-      -webkit-tap-highlight-color: transparent;
+      transition: transform 140ms var(--ease), box-shadow 140ms var(--ease);
     }
-    .btn svg { width: 22px; height: 22px; flex: none; }
-    .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--magenta); }
-    .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 6px; }
-    @media (hover: hover) {
-      .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 0 var(--magenta); }
-      .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--magenta); }
+    .sheet-whats:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--magenta); }
+    .sheet-whats svg { width: 20px; height: 20px; }
+    .sheet-close { margin-top: 14px; min-height: 40px; padding: 0 16px; color: var(--pink); font-size: 14px; }
+
+    @media (min-width: 600px) {
+      .sheet { margin: auto; border-radius: 28px; box-shadow: 0 0 0 1px var(--gold-line); }
     }
 
-    .phone { margin-top: 18px; font-size: 14px; letter-spacing: .04em; }
+    /* ---------- Movimento ---------- */
+    .rise { animation: rise 640ms var(--ease) both; animation-delay: calc(var(--i, 0) * 70ms); }
+    .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 3.2s ease-in-out infinite; }
 
-    /* Rodapé */
-    footer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 56px;
-      font-size: 14px;
-    }
-    footer a, footer span { display: inline-flex; align-items: center; gap: 6px; color: var(--pink); text-decoration: none; }
-    footer a { min-height: 32px; }
-    footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    footer a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 4px; }
-    footer svg { width: 16px; height: 16px; flex: none; }
-
-    /* Movimento */
-    .rise { animation: rise 600ms cubic-bezier(.2, .8, .2, 1) both; }
-    .rise:nth-child(2) { animation-delay: 80ms; }
-    .rise:nth-child(3) { animation-delay: 160ms; }
-    .rise:nth-child(4) { animation-delay: 240ms; }
-    .rise:nth-child(5) { animation-delay: 320ms; }
-    .spark path { transform-box: fill-box; transform-origin: center; animation: twinkle 3.2s ease-in-out 1s infinite; }
-
-    @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
-    @keyframes twinkle { 50% { opacity: .5; transform: scale(.7); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+    @keyframes pop { from { opacity: 0; transform: scale(.96); } }
+    @keyframes up { from { opacity: 0; transform: translateY(32px); } }
+    @keyframes twinkle { 50% { opacity: .45; transform: scale(.7); } }
 
     @media (prefers-reduced-motion: reduce) {
-      .rise, .spark path { animation: none; }
-      .btn { transition: none; }
+      html { scroll-behavior: auto; }
+      .rise, .twinkle, .peca.is-in, .sheet[open] { animation: none; }
+      .link, .arch, .sheet-whats { transition: none; }
     }
   </style>
 </head>
 <body>
+  <!-- Ícones usados na página -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-whats" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.41 9.41 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43a9.37 9.37 0 0 1 6.67 2.77 9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.27 11.27 0 0 0 12.05.72C5.8.72.7 5.8.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.6l6-1.57a11.34 11.34 0 0 0 5.43 1.38h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02z"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 8h14l-1 12.5a1 1 0 0 1-1 .9H7a1 1 0 0 1-1-.9L5 8z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M9 10V7a3 3 0 0 1 6 0v3"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c.6 6.5 5.5 11.4 12 12-6.5.6-11.4 5.5-12 12-.6-6.5-5.5-11.4-12-12 6.5-.6 11.4-5.5 12-12z"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></symbol>
+  </svg>
+
   <main>
-    <h1 class="logo rise">
-      <img src="logo.webp" width="855" height="509" alt="Di Biju">
-    </h1>
+    <header class="hero">
+      <h1 class="rise"><img src="logo.webp" width="855" height="509" alt="Di Biju"></h1>
+      <p class="tagline rise" style="--i:1">Semijoias - Acessórios - Makes</p>
+      <p class="place rise" style="--i:2"><svg aria-hidden="true"><use href="#i-pin"/></svg>Cobilândia · Vila Velha – ES</p>
+    </header>
 
-    <p class="tagline rise">Semijoias - Acessórios - Makes</p>
+    <p class="lead rise" style="--i:3">Oi, amiga! Como você prefere comprar?</p>
 
-    <svg class="spark rise" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.5 5.5 11.4 12 12-6.5.6-11.4 5.5-12 12-.6-6.5-5.5-11.4-12-12 6.5-.6 11.4-5.5 12-12z"/></svg>
+    <ul class="links">
+      <li class="rise" style="--i:4">
+        <a class="link link--whats" href="https://wa.me/5527992832728?text=Oi%21%20Vim%20pelo%20Instagram%20e%20quero%20saber%20mais%20%F0%9F%92%9A" rel="noopener">
+          <span class="link-icon"><svg aria-hidden="true"><use href="#i-whats"/></svg></span>
+          <span class="link-text"><span class="link-title">Chamar no WhatsApp</span><span class="link-sub">Tire dúvidas e faça seu pedido</span></span>
+          <svg class="link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </li>
+      <li class="rise" style="--i:5">
+        <!-- LINK DA SHOPEE: troque o # pelo link da loja -->
+        <a class="link" href="#" rel="noopener">
+          <span class="link-icon"><svg aria-hidden="true"><use href="#i-bag"/></svg></span>
+          <span class="link-text"><span class="link-title">Comprar na Shopee</span><span class="link-sub">Nossa loja online</span></span>
+          <svg class="link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </li>
+      <li class="rise" style="--i:6">
+        <!-- LINK DO GOOGLE: troque o # pelo link do Google Maps -->
+        <a class="link link--google" href="#" rel="noopener">
+          <span class="link-icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+          <span class="link-text"><span class="link-title">Ver a loja no Google</span><span class="link-sub">Endereço, rota e avaliações</span></span>
+          <svg class="link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </li>
+    </ul>
 
-    <a class="btn rise" href="https://wa.me/5527992832728?text=Oi%21%20Vim%20pelo%20Instagram%20e%20quero%20saber%20mais%20%F0%9F%92%9A" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.41 9.41 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43a9.37 9.37 0 0 1 6.67 2.77 9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.27 11.27 0 0 0 12.05.72C5.8.72.7 5.8.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.6l6-1.57a11.34 11.34 0 0 0 5.43 1.38h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02z"/></svg>
-      Chamar no WhatsApp
-    </a>
+    <div class="sep" aria-hidden="true"><svg class="twinkle"><use href="#i-spark"/></svg></div>
 
-    <p class="phone rise">(27) 99283-2728</p>
+    <section aria-labelledby="vitrine-title">
+      <div class="section-head">
+        <p class="eyebrow">Vitrine</p>
+        <h2 class="title" id="vitrine-title">Escolha a sua</h2>
+        <p class="hint">Toque na peça pra pedir pelo Whats.</p>
+      </div>
+      <div class="chips" role="group" aria-label="Filtrar a vitrine"></div>
+      <ul class="vitrine"></ul>
+    </section>
+
+    <div class="sep" aria-hidden="true"><svg class="twinkle" style="animation-delay:1.2s"><use href="#i-spark"/></svg></div>
+
+    <section aria-labelledby="loja-title">
+      <div class="section-head">
+        <p class="eyebrow">A loja</p>
+        <h2 class="title" id="loja-title">Vem ver de pertinho</h2>
+      </div>
+      <ul class="loja"></ul>
+      <div class="loja-info">
+        <p>Cobilândia, Vila Velha – ES</p>
+        <a class="btn-outline js-google" href="#" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Como chegar</a>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://www.instagram.com/dibiju.oficial/" rel="noopener"><svg aria-hidden="true"><use href="#i-insta"/></svg>@dibiju.oficial</a>
+    </footer>
   </main>
 
-  <footer class="rise">
-    <span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-      Cobilândia, Vila Velha · ES
-    </span>
-    <a href="https://www.instagram.com/dibiju.oficial/" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
-      @dibiju.oficial
-    </a>
-  </footer>
+  <dialog class="sheet" aria-labelledby="sheet-title">
+    <span class="arch sheet-arch"></span>
+    <p class="eyebrow sheet-cat"></p>
+    <h2 class="title" id="sheet-title"></h2>
+    <a class="sheet-whats" href="#" rel="noopener"><svg aria-hidden="true"><use href="#i-whats"/></svg>Quero essa peça</a>
+    <form method="dialog"><button class="sheet-close">Fechar</button></form>
+  </dialog>
+
+  <script>
+    // ===== Para editar =====
+    // Peças da vitrine. "foto" é o caminho da imagem dentro de public/ (ex.: "fotos/brinco-perola.webp").
+    const VITRINE = [
+      { nome: 'Semijoia 1', categoria: 'Semijoias', foto: '' },
+      { nome: 'Semijoia 2', categoria: 'Semijoias', foto: '' },
+      { nome: 'Acessório 1', categoria: 'Acessórios', foto: '' },
+      { nome: 'Acessório 2', categoria: 'Acessórios', foto: '' },
+      { nome: 'Make 1', categoria: 'Makes', foto: '' },
+      { nome: 'Make 2', categoria: 'Makes', foto: '' },
+    ];
+    // Fotos da loja física.
+    const LOJA = [
+      { legenda: 'A fachada', foto: '' },
+      { legenda: 'As semijoias', foto: '' },
+      { legenda: 'As makes', foto: '' },
+    ];
+    const WHATSAPP = '5527992832728';
+    // =======================
+
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const whats = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    const placeholder = label => `<span class="ph"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>${esc(label)}</span></span>`;
+    const picture = (foto, label) => foto
+      ? `<img src="${esc(foto)}" alt="" loading="lazy" decoding="async">`
+      : placeholder(label);
+
+    // Vitrine
+    const vitrine = document.querySelector('.vitrine');
+    vitrine.innerHTML = VITRINE.map((p, i) => `
+      <li class="peca" data-cat="${esc(p.categoria)}">
+        <button class="peca-btn" type="button" data-i="${i}">
+          <span class="arch">${picture(p.foto, 'foto')}</span>
+          <span class="peca-nome">${esc(p.nome)}</span>
+          <span class="peca-cat">${esc(p.categoria)}</span>
+        </button>
+      </li>`).join('');
+
+    // Filtros
+    const chips = document.querySelector('.chips');
+    const categorias = ['Todas', ...new Set(VITRINE.map(p => p.categoria))];
+    chips.innerHTML = categorias.map((c, i) =>
+      `<button class="chip" type="button" aria-pressed="${i === 0}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+    chips.addEventListener('click', e => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      chips.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b === chip));
+      const cat = chip.dataset.cat;
+      vitrine.querySelectorAll('.peca').forEach(li => {
+        const show = cat === 'Todas' || li.dataset.cat === cat;
+        li.hidden = !show;
+        li.classList.remove('is-in');
+        if (show) { void li.offsetWidth; li.classList.add('is-in'); }
+      });
+    });
+
+    // Peça aberta
+    const sheet = document.querySelector('.sheet');
+    vitrine.addEventListener('click', e => {
+      const btn = e.target.closest('.peca-btn');
+      if (!btn) return;
+      const p = VITRINE[btn.dataset.i];
+      sheet.querySelector('.sheet-arch').innerHTML = picture(p.foto, 'foto');
+      sheet.querySelector('.sheet-cat').textContent = p.categoria;
+      sheet.querySelector('#sheet-title').textContent = p.nome;
+      sheet.querySelector('.sheet-whats').href = whats(`Oi! Vi a peça "${p.nome}" no site e quero saber mais 💚`);
+      sheet.showModal();
+    });
+    sheet.addEventListener('click', e => { if (e.target === sheet) sheet.close(); });
+
+    // Loja
+    document.querySelector('.loja').innerHTML = LOJA.map(f => `
+      <li><figure class="foto">${picture(f.foto, 'foto da loja')}<figcaption>${esc(f.legenda)}</figcaption></figure></li>`).join('');
+
+    // O botão "Como chegar" usa o mesmo link do Google
+    document.querySelector('.js-google').href = document.querySelector('.link--google').href;
+  </script>
 </body>
 </html>
