@@ -189,7 +189,8 @@
       gap: 28px 16px;
       list-style: none;
     }
-    .peca[hidden] { display: none; }
+    .peca[hidden], [data-link][hidden], li[hidden] { display: none; }
+    .peca.solo { grid-column: 1 / -1; justify-self: center; width: calc(50% - 8px); }
     .peca.is-in { animation: pop 320ms var(--ease) both; }
     .peca-btn { display: block; width: 100%; text-align: center; border-radius: 0; }
     .peca-btn:focus-visible { outline: none; }
@@ -243,6 +244,7 @@
     }
     .loja::-webkit-scrollbar { display: none; }
     .loja > li { flex: none; width: 74%; scroll-snap-align: start; }
+    .loja > li:only-child { width: 100%; }
     .foto {
       position: relative;
       aspect-ratio: 4 / 5;
@@ -378,16 +380,14 @@
         </a>
       </li>
       <li class="rise" style="--i:5">
-        <!-- LINK DA SHOPEE: troque o # pelo link da loja -->
-        <a class="link" href="#" rel="noopener">
+        <a class="link" data-link="shopee" href="#" rel="noopener">
           <span class="link-icon"><svg aria-hidden="true"><use href="#i-bag"/></svg></span>
           <span class="link-text"><span class="link-title">Comprar na Shopee</span><span class="link-sub">Nossa loja online</span></span>
           <svg class="link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
       </li>
       <li class="rise" style="--i:6">
-        <!-- LINK DO GOOGLE: troque o # pelo link do Google Maps -->
-        <a class="link link--google" href="#" rel="noopener">
+        <a class="link" data-link="google" href="#" rel="noopener">
           <span class="link-icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
           <span class="link-text"><span class="link-title">Ver a loja no Google</span><span class="link-sub">Endereço, rota e avaliações</span></span>
           <svg class="link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -417,7 +417,7 @@
       <ul class="loja"></ul>
       <div class="loja-info">
         <p>Cobilândia, Vila Velha – ES</p>
-        <a class="btn-outline js-google" href="#" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Como chegar</a>
+        <a class="btn-outline" data-link="google" href="#" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Como chegar</a>
       </div>
     </section>
 
@@ -438,19 +438,19 @@
     // ===== Para editar =====
     // Peças da vitrine. "foto" é o caminho da imagem dentro de public/ (ex.: "fotos/brinco-perola.webp").
     const VITRINE = [
-      { nome: 'Semijoia 1', categoria: 'Semijoias', foto: '' },
-      { nome: 'Semijoia 2', categoria: 'Semijoias', foto: '' },
-      { nome: 'Acessório 1', categoria: 'Acessórios', foto: '' },
-      { nome: 'Acessório 2', categoria: 'Acessórios', foto: '' },
-      { nome: 'Make 1', categoria: 'Makes', foto: '' },
-      { nome: 'Make 2', categoria: 'Makes', foto: '' },
+      { nome: 'Colar riviera com coração', categoria: 'Semijoias', foto: 'fotos/colar-riviera-coracao.webp' },
+      { nome: 'Mix de braceletes tartaruga', categoria: 'Acessórios', foto: 'fotos/braceletes-tartaruga.webp' },
+      { nome: 'Mix de braceletes pretos', categoria: 'Acessórios', foto: 'fotos/braceletes-pretos.webp' },
     ];
     // Fotos da loja física.
     const LOJA = [
-      { legenda: 'A fachada', foto: '' },
-      { legenda: 'As semijoias', foto: '' },
-      { legenda: 'As makes', foto: '' },
+      { legenda: 'A fachada', foto: 'fotos/loja-fachada.webp' },
     ];
+    // Links. Enquanto estiver vazio, o botão fica escondido.
+    const LINKS = {
+      shopee: '', // link da loja na Shopee
+      google: '', // link da loja no Google Maps
+    };
     const WHATSAPP = '5527992832728';
     // =======================
 
@@ -488,7 +488,16 @@
         li.classList.remove('is-in');
         if (show) { void li.offsetWidth; li.classList.add('is-in'); }
       });
+      centerLast();
     });
+
+    // Se sobrar uma peça sozinha na última fileira, ela fica no meio
+    function centerLast() {
+      const shown = [...vitrine.querySelectorAll('.peca:not([hidden])')];
+      vitrine.querySelectorAll('.peca').forEach(li => li.classList.remove('solo'));
+      if (shown.length % 2) shown[shown.length - 1].classList.add('solo');
+    }
+    centerLast();
 
     // Peça aberta
     const sheet = document.querySelector('.sheet');
@@ -508,8 +517,12 @@
     document.querySelector('.loja').innerHTML = LOJA.map(f => `
       <li><figure class="foto">${picture(f.foto, 'foto da loja')}<figcaption>${esc(f.legenda)}</figcaption></figure></li>`).join('');
 
-    // O botão "Como chegar" usa o mesmo link do Google
-    document.querySelector('.js-google').href = document.querySelector('.link--google').href;
+    // Links: preenche ou esconde
+    document.querySelectorAll('[data-link]').forEach(a => {
+      const url = LINKS[a.dataset.link];
+      if (url) a.href = url;
+      else (a.closest('li') || a).hidden = true;
+    });
   </script>
 </body>
 </html>
