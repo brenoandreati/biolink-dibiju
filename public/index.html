@@ -163,14 +163,11 @@
     /* ---------- Vitrine ---------- */
     .chips {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 8px;
-      margin: 0 -20px 24px;
-      padding: 2px 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      justify-content: safe center;
+      margin-bottom: 24px;
     }
-    .chips::-webkit-scrollbar { display: none; }
     .chip {
       flex: none;
       min-height: 36px;
@@ -439,12 +436,23 @@
     // Peças da vitrine. "foto" é o caminho da imagem dentro de public/ (ex.: "fotos/brinco-perola.webp").
     const VITRINE = [
       { nome: 'Colar riviera com coração', categoria: 'Semijoias', foto: 'fotos/colar-riviera-coracao.webp' },
+      { nome: 'Brincos dourados', categoria: 'Semijoias', foto: 'fotos/brincos-dourados.webp' },
       { nome: 'Mix de braceletes tartaruga', categoria: 'Acessórios', foto: 'fotos/braceletes-tartaruga.webp' },
       { nome: 'Mix de braceletes pretos', categoria: 'Acessórios', foto: 'fotos/braceletes-pretos.webp' },
+      { nome: 'Relógios', categoria: 'Acessórios', foto: 'fotos/relogios.webp' },
+      { nome: 'Lenços estampados', categoria: 'Acessórios', foto: 'fotos/lencos.webp' },
+      { nome: 'Kits de pincéis', categoria: 'Makes', foto: 'fotos/kit-pinceis.webp' },
+      { nome: 'Body splash', categoria: 'Makes', foto: 'fotos/body-splash.webp' },
+      { nome: 'Mousse de limpeza facial Alleva', categoria: 'Makes', foto: 'fotos/mousse-alleva.webp' },
+      { nome: 'Paleta infantil de sombras e batom', categoria: 'Makes', foto: 'fotos/paleta-infantil.webp' },
+      { nome: 'Buquê de presente', categoria: 'Presentes', foto: 'fotos/buque-presente.webp' },
     ];
     // Fotos da loja física.
     const LOJA = [
       { legenda: 'A fachada', foto: 'fotos/loja-fachada.webp' },
+      { legenda: 'Por dentro', foto: 'fotos/loja-por-dentro.webp' },
+      { legenda: 'As makes', foto: 'fotos/loja-makes.webp' },
+      { legenda: 'Os brincos', foto: 'fotos/loja-brincos.webp' },
     ];
     // Links. Enquanto estiver vazio, o botão fica escondido.
     const LINKS = {
